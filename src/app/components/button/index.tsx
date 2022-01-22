@@ -63,10 +63,10 @@ const BaseButton = styled.button<IButtonStyleProps>`
     shape === "circle" && circleSize ? `${circleSize}px` : ``};
 
   ${tw`
-    pl-5
-    pr-5
-    pt-3
-    pb-3
+    pl-3
+    pr-3
+    pt-1
+    pb-1
     justify-center
     items-center
     text-xs
@@ -77,11 +77,20 @@ const BaseButton = styled.button<IButtonStyleProps>`
     transition-all
     duration-200
     ease-in-out
-    m-1
+    
+    md:pl-5
+    md:pr-5
+    md:pt-3
+    md:pb-3
+    md:m-1
 `};
 
   border-radius: ${({ shape }) => (shape !== "circle" ? "3.75rem" : ``)};
   padding: ${({ shape }) => (shape === "circle" ? "3px 3px" : ``)};
+`;
+
+const Text = styled.span`
+  margin-left: 3px;
 `;
 
 export default function Button(props: IButtonProps) {
@@ -106,8 +115,9 @@ export default function Button(props: IButtonProps) {
         textColor={textColor}
         bgc={bgc}
       >
-        {text}
         {icon}
+        {text && text?.length > 0 ? <Text>{text}</Text> : ""}
+
         {children}
       </BaseButton>
     </span>

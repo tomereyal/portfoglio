@@ -182,11 +182,10 @@ export default function ProjectPage(props: IProjectPage) {
             <Button
               textColor="white"
               icon={<FontAwesomeIcon icon={faUndoAlt} />}
+              text={isDesktopOrLaptop ? "Back" : ""}
               // shape="circle"
               // circleSize={isDesktopOrLaptop ? 100 : 45}
-            >
-              Back
-            </Button>
+            ></Button>
           </HashLink>
         </ToolbarLayer2>
 

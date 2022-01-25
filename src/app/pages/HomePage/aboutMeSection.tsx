@@ -49,18 +49,13 @@ const Slide = styled.div<ISlideProps>`
     flex-wrap
     items-center
     justify-center
-    pt-4
-    pb-4
-    pr-7
-    pl-7
+    pr-4
+    py-7
     md:pl-0
     md:pr-0
-bg-transparent
 rounded-md
 
-`}/* background-image: url(${citybanner});
-  background-position-x: ${({ index = 0 }) => index * 100 + 100}%;
-  background-size: cover; */
+`}
 `;
 
 const ImageContainer = styled.div`
@@ -70,7 +65,7 @@ const ImageContainer = styled.div`
   img {
     width: auto;
     ${tw`
-    h-56
+    h-72
     md:h-full
     `}
   }
@@ -81,7 +76,7 @@ const ImageContainer = styled.div`
     height: 30em;
   }
   @media (min-width: ${SCREENS["2xl"]}) {
-    height: 35em;
+    height: 30em;
     margin-left: 0;
   }
 `;
@@ -127,10 +122,13 @@ const InfoContainer = styled.div`
     md:w-1/2
     flex
     flex-col
+    items-center
+    justify-center
     md:ml-6
     2xl:ml-16
-text-white
-
+  bg-white
+  py-7
+  rounded-lg
   `};
 `;
 
@@ -145,7 +143,6 @@ const InfoTitle = styled.h1<IInfoProps>`
     font-extrabold
     md:font-black
     md:leading-normal
-text-white
 
   `};
   span {
@@ -157,6 +154,11 @@ text-white
 
 const InfoText = styled.p`
   ${tw`
+  flex
+  justify-center
+  
+
+  items-center
     md:max-w-2xl
     text-sm
     md:text-base
@@ -248,13 +250,12 @@ export default function AboutMeSection() {
               <img src={blob}></img>
             </BlobContainer> */}
             <ImageContainer>
-              <img src={tomer1} />
+              <img src={"https://i.ibb.co/nPJmfqs/image-Of-Me.png"} />
             </ImageContainer>
             <InfoContainer>
               <InfoTitle color={slide.color}>
                 {slide.title} <span>{slide.subtitle}</span>
               </InfoTitle>
-              {/* <InfoSubtitle>{slide.subtitle}</InfoSubtitle> */}
               <InfoText>{slide.description}</InfoText>
             </InfoContainer>
           </Slide>
@@ -279,7 +280,7 @@ export default function AboutMeSection() {
         <ContactSection />
         <ResumeContainer>
           <a href={tomersResume} target={"_blank"}>
-            <Button text={"Resume"} theme="outlined" textColor="#35853a" />
+            <Button text={"Resume"} theme="filled" bgc="#35853a" />
           </a>
         </ResumeContainer>
       </ButtonsContainer>

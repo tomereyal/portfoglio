@@ -10,8 +10,9 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { projects } from "./app/app-config/projects";
 import ProjectPage from "./app/pages/ProjectPage";
 const AppContainer = styled.div`
-  ${tw`w-full h-full flex flex-col`}
+  ${tw`w-full min-h-screen flex flex-col`}
 `;
+
 function App() {
   return (
     <AppContainer>
@@ -21,7 +22,7 @@ function App() {
         <ThemeProvider>
           <Switch>
             {projects.map((project) => (
-              <Route exact path={project.path}>
+              <Route key={project.title} path={project.path}>
                 <ProjectPage project={project}></ProjectPage>
               </Route>
             ))}

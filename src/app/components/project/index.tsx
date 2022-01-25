@@ -161,6 +161,35 @@ const ProjectTitle = styled.h3`
   `};
 `;
 
+export const Separator = styled.div`
+  min-width: 100%;
+  min-height: 1px;
+  ${tw`
+    flex
+    bg-gray-300
+    mt-2
+    mb-2
+  `};
+`;
+export const StacksContainer = styled.div`
+  ${tw`
+    w-full
+    flex
+    justify-center
+    items-center
+    
+  `};
+`;
+
+export const Stack = styled.p`
+  ${tw`
+    text-xs
+    font-bold
+    ml-2
+    mr-2
+  `};
+`;
+
 export default function Project(props: IPropsProject) {
   const {
     title,
@@ -200,6 +229,16 @@ export default function Project(props: IPropsProject) {
             <img src={thumbnail} alt="website" />
           </ProjectThumbnail>
           <ProjectTitle>{title}</ProjectTitle>
+          <StacksContainer>
+            {stacks && stacks.length
+              ? stacks.map((stack) => <Stack>{stack}</Stack>)
+              : ""}
+          </StacksContainer>
+          <Separator />
+
+          {/* <ProjectDescription>
+            {description ? description : "Not available"}
+          </ProjectDescription> */}
         </OvalProject>
       </ProjectContainer>
     </MainContainer>

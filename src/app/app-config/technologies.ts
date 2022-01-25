@@ -19,6 +19,7 @@ import development from "../../assests/techLogos/development.svg";
 import angular from "../../assests/techLogos/angularLogo.svg";
 import socket from "../../assests/techLogos/socketLogo.svg";
 import PHP from "../../assests/techLogos/phpLogo.svg";
+import { faDatabase, faRocket, faServer, faTabletAlt } from "@fortawesome/free-solid-svg-icons";
 export const clientSideTechs = [
   { name: "HTML", logo: html5 },
   { name: "CSS", logo: css },
@@ -48,17 +49,17 @@ export const technologies: Array<ITechnologies> = [
   {
     type: "client-side",
     content: clientSideTechs,
-    logo: clientApp,
+    logo: faTabletAlt,
   },
   {
     type: "server-side",
     content: serverSideTechs,
-    logo: server,
+    logo: faServer,
   },
   {
     type: "databases",
     content: dataBaseTechs,
-    logo: database3d,
+    logo: faDatabase,
   },
-  { type: "dev", content: developmentTechs, logo: development },
+  { type: "dev", content: developmentTechs, logo: faRocket },
 ];

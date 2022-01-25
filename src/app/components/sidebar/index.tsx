@@ -11,7 +11,7 @@ import Button from "../button";
 
 const SidebarContainer = styled.div`
   z-index: 1;
-  height: 80%;
+  height: 80vh;
   ${tw`
 
 w-10
@@ -49,6 +49,7 @@ export default function Sidebar() {
           <a href={"https://www.facebook.com/tomereyal1"} target={"_blank"}>
             <Button
               shape={"circle"}
+              className={"circle"}
               circleSize={30}
               textColor={"white"}
               icon={<FontAwesomeIcon icon={faFacebook} />}

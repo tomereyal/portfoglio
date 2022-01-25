@@ -16,7 +16,7 @@ const SideTextItemContainer = styled.div`
     flex 
     flex-col
     w-full
-    h-full
+    h-screen
     justify-around
     items-center
     relative

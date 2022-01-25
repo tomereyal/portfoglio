@@ -207,16 +207,16 @@ export default function TechSection() {
   const toggleDarkTheme = useThemeUpdate();
   const darkTheme = useTheme();
 
-  useEffect(() => {
-    window.addEventListener("scroll", (e) => {
-      console.log("e", e);
-    });
-    return () => {
-      window.removeEventListener("scroll", (e) => {
-        console.log("e", e);
-      });
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", (e) => {
+  //     console.log("e", e);
+  //   });
+  //   return () => {
+  //     window.removeEventListener("scroll", (e) => {
+  //       console.log("e", e);
+  //     });
+  //   };
+  // }, []);
 
   const onEnterViewport = () => {
     if (darkTheme) {
@@ -243,67 +243,23 @@ export default function TechSection() {
       <Description>And the list is still growing!</Description>
 
       <FlowContainer>
-        <TechMissile position={0} inViewPort={inViewport}>
-          <BlocksContainer>
-            {clientSideTechs.map(({ logo, name }) => (
-              <TechBlock>
-                <span> {name}</span>
-                <img src={logo}></img>
-              </TechBlock>
-            ))}
-          </BlocksContainer>
+        {technologies.map((t, index) => (
+          <TechMissile key={t.type} position={index} inViewPort={inViewport}>
+            <BlocksContainer>
+              {t.content.map(({ logo, name }) => (
+                <TechBlock key={name}>
+                  <span> {name}</span>
+                  <img src={logo}></img>
+                </TechBlock>
+              ))}
+            </BlocksContainer>
 
-          <Spacer />
-          <RocketHead>
-            <FontAwesomeIcon icon={faTabletAlt}></FontAwesomeIcon>
-          </RocketHead>
-        </TechMissile>
-        <TechMissile position={1} inViewPort={inViewport}>
-          <BlocksContainer>
-            {serverSideTechs.map(({ logo, name }) => (
-              <TechBlock>
-                <span> {name}</span>
-
-                <img src={logo}></img>
-              </TechBlock>
-            ))}
-          </BlocksContainer>
-
-          <Spacer />
-          <RocketHead>
-            <FontAwesomeIcon icon={faServer}></FontAwesomeIcon>
-          </RocketHead>
-        </TechMissile>
-        <TechMissile position={2} inViewPort={inViewport}>
-          <BlocksContainer>
-            {dataBaseTechs.map(({ logo, name }) => (
-              <TechBlock>
-                <span> {name}</span>
-
-                <img src={logo}></img>
-              </TechBlock>
-            ))}
-          </BlocksContainer>
-          <Spacer />
-          <RocketHead>
-            <FontAwesomeIcon icon={faDatabase}></FontAwesomeIcon>
-          </RocketHead>
-        </TechMissile>
-        <TechMissile position={3} inViewPort={inViewport}>
-          <BlocksContainer>
-            {developmentTechs.map(({ logo, name }) => (
-              <TechBlock>
-                <span> {name}</span>
-
-                <img src={logo}></img>
-              </TechBlock>
-            ))}
-          </BlocksContainer>
-          <Spacer />
-          <RocketHead>
-            <FontAwesomeIcon icon={faRocket}></FontAwesomeIcon>
-          </RocketHead>
-        </TechMissile>
+            <Spacer />
+            <RocketHead>
+              <FontAwesomeIcon icon={t.logo}></FontAwesomeIcon>
+            </RocketHead>
+          </TechMissile>
+        ))}
       </FlowContainer>
       {/* <TechsContainer >
         <GridBox childrenPerRow={2}>{techColumns(inViewport)}</GridBox>

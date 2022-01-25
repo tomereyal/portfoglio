@@ -263,9 +263,8 @@ export default function TopSection() {
             <img src={BlobImg} />
           </BlobContainer> */}
           <StandAloneImage>{/* <img src={MclarenCarImg} /> */}</StandAloneImage>
-          <ResponsiveText style={{ color: "white" }}>
-            {/* "[Place animated logo/pixelated character here with lvl 28 beneath]" */}
-          </ResponsiveText>
+          {/* <ResponsiveText style={{ color: "white" }}>
+          </ResponsiveText> */}
         </RightContainer>
       </TopSectionContainer>
       <HeroBackground>

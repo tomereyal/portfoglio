@@ -11,7 +11,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import Button from "../../components/button";
 
-const COLOR_CONFIG = { animationColor: `#328037` };
+const COLOR_CONFIG = { animationColor: `#c769cf` };
 
 const InfoContainer = styled.div`
   ${tw`
@@ -33,10 +33,14 @@ const InfoItem = styled.div`
     p-3
     rounded-md
     cursor-pointer
-  text-black
-    bg-white
+  text-white
 `}
-  background-image: linear-gradient(90deg, ${COLOR_CONFIG.animationColor} 50%, transparent 50%),
+  background-color: #272323dc;
+  background-image: linear-gradient(
+      90deg,
+      ${COLOR_CONFIG.animationColor} 50%,
+      transparent 50%
+    ),
     linear-gradient(90deg, ${COLOR_CONFIG.animationColor} 50%, transparent 50%),
     linear-gradient(0deg, ${COLOR_CONFIG.animationColor} 50%, transparent 50%),
     linear-gradient(0deg, ${COLOR_CONFIG.animationColor} 50%, transparent 50%);
@@ -45,7 +49,6 @@ const InfoItem = styled.div`
   background-position: left top, right bottom, left bottom, right top;
   animation: border-dance 1s infinite linear;
   transition: transform linear 300ms;
-
   &:hover {
     transform: scale(1.1);
   }
@@ -79,6 +82,7 @@ const Icon = styled.span`
   border-solid
   
 `}
+
   border-color: #0080004c
 `;
 

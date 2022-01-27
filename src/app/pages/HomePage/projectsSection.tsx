@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import Carousel, { Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel";
@@ -7,13 +7,10 @@ import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "../../components/responsive";
 import MoonLoader from "react-spinners/MoonLoader";
 import Project from "../../components/project";
-import { IProject } from "./types";
 import { projects } from "../../app-config/projects";
 import { useInViewport } from "react-in-viewport";
 import { ISectionProps } from "../../../typings/section.js";
 import { useTheme, useThemeUpdate } from "../../ThemeContext";
-import { throttle } from "lodash";
-import planet from "../../../assests/images/planet.png";
 
 const MainContainer = styled.div`
   scroll-snap-align: center;
@@ -24,18 +21,14 @@ const MainContainer = styled.div`
     flex-col
     items-center
     justify-center
-    pr-4
-    pl-4
+ 
     pt-10
     pb-14
-    md:pl-28
-    md:pr-28 
+
     md:pb-5
     
-    bg-gradient-to-b from-black via-gray-500 to-white
 `}
-  background: url(${planet});
-  background-size: cover;
+
   scroll-snap-align: center;
 
   padding-bottom: 100px;

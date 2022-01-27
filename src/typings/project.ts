@@ -8,6 +8,7 @@ export interface IProject {
   thumbnail?: string;
   path?: string;
   features?: IProjectFeature[];
+  slogan?: string;
 }
 
 export interface IProjectFeature {

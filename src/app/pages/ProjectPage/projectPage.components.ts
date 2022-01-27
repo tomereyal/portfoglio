@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import tw from "twin.macro";
+import { SCREENS } from "../../components/responsive";
+import BlobImg from "../../../assests/images/blob.svg";
 
 export const PageContainer = styled.div`
   ${tw`
@@ -11,6 +13,42 @@ min-h-screen
     items-center
     bg-gray-900
   `}
+`;
+
+const BlobContainer = styled.div`
+  width: 20em;
+  height: 10em;
+  position: absolute;
+  right: -5em;
+  top: -9em;
+  z-index: 0;
+  transform: rotate(-30deg);
+  img {
+    width: 100%;
+    height: auto;
+    max-height: max-content;
+  }
+  @media (min-width: ${SCREENS.sm}) {
+    width: 40em;
+    max-height: 10em;
+    right: -9em;
+    top: -16em;
+    transform: rotate(-25deg);
+  }
+  @media (min-width: ${SCREENS.lg}) {
+    width: 50em;
+    max-height: 30em;
+    right: -7em;
+    top: -15em;
+    transform: rotate(-30deg);
+  }
+  @media (min-width: ${SCREENS.xl}) {
+    width: 70em;
+    max-height: 30em;
+    right: -15em;
+    top: -25em;
+    transform: rotate(-20deg);
+  }
 `;
 
 export const Toolbar = styled.div`

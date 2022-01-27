@@ -2,6 +2,7 @@ import { IProject } from "../../typings/project";
 
 const TOP_TRIPS: IProject = {
   title: "Top Trips",
+  slogan: "Survey users' top trips!",
   thumbnail: "https://i.ibb.co/fvMZk7Y/image.png",
   stacks: [
     "React",
@@ -20,7 +21,7 @@ const TOP_TRIPS: IProject = {
   features: [
     {
       img: "https://i.ibb.co/bJNDVbq/image.png",
-      title: "User-Only Autherization & Refresh Token Based Security",
+      title: "Refresh Token Based Security",
       bulletins: [
         "Implements an extra layer of security, using JWT expiring access tokens & JWT refresh tokens regulated by the database and stored as session cookies so long user doesn't log out.",
         "Offers admin-only feature for autherized users, enabling basic CRUD operations on vacations and a stat chart with top vacations.",
@@ -28,16 +29,16 @@ const TOP_TRIPS: IProject = {
     },
     {
       img: "https://i.ibb.co/cxBR4pK/image.png",
-      title: "Admin only features",
+      title: "Admin-only features",
       bulletins: [
         "Offers admin-only feature for autherized users, enabling basic CRUD operations on vacations and a stat chart with top vacations.",
       ],
     },
     {
       img: "https://i.ibb.co/2K9GjCy/toptrips-Img.png",
-      title: "Subscription For Live Changes In Trips",
+      title: "WebSocket For Live Changes In Trips",
       bulletins: [
-        "Incorporates web sockets (socket.io) to subcribe clients to live changes in vacations they follow using room joins on server and Redux Toolkit Queries streaming methods on client.",
+        "Incorporates webSocket (socket.io) to subscribe clients to live changes in vacations they follow using room joins on server and Redux Toolkit Queries streaming methods on client.",
       ],
     },
     {
@@ -52,6 +53,7 @@ const TOP_TRIPS: IProject = {
 
 const SUPERMARKET: IProject = {
   title: "Supermarket",
+  slogan: "Get your groceries easily online.",
   thumbnail:
     "https://res.cloudinary.com/dgt2lqdp3/image/upload/v1642791240/supermarketSapshot2_gqlfuu.png",
   path: "/supermarket",
@@ -132,16 +134,21 @@ const SUPERMARKET: IProject = {
   ],
 };
 
-export const projects: Array<IProject> = [
-  {
-    title: "Note Buddy",
-    thumbnail:
-      "https://i1.wp.com/s1.wp.com/wp-content/themes/h4/landing/marketing/pages/hp-jan-2020-v2/media/desktop/desktop-website-v2.jpg?ssl=1",
-    stacks: ["React", "MongoDB", "Mongoose", "Slate.Js"],
-    description: "Not currently available",
-    path: "/note-buddy",
-  },
+const NOTE_BUDDY: IProject = {
+  title: "Note Buddy",
+  thumbnail: "https://i.ibb.co/wLPbk6f/studybuddy-Snapshot.png",
+  stacks: [
+    "React",
+    "Redux",
+    "MongoDB",
+    "Mongoose",
+    "Slate.Js",
+    "MathQuill",
+    "Express",
+  ],
+  description: "Under Construction",
+  path: "/note-buddy",
+  // features: [{ img: "https://i.ibb.co/wLPbk6f/studybuddy-Snapshot.png" }],
+};
 
-  TOP_TRIPS,
-  SUPERMARKET,
-];
+export const projects: Array<IProject> = [TOP_TRIPS, SUPERMARKET, NOTE_BUDDY];

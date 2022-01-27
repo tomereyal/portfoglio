@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import tw from "twin.macro";
 import { technologies } from "../../app-config/technologies";
@@ -6,20 +6,8 @@ import { useInViewport } from "react-in-viewport";
 import { ISectionProps } from "../../../typings/section.js";
 import { SCREENS } from "../../components/responsive";
 import { useTheme, useThemeUpdate } from "../../ThemeContext";
-import GridBox from "../../components/gridBox";
-import { clientSideTechs } from "../../app-config/technologies";
-import { serverSideTechs } from "../../app-config/technologies";
-import { dataBaseTechs } from "../../app-config/technologies";
-import { developmentTechs } from "../../app-config/technologies";
-import planetOut from "../../../assests/images/planet-out.png";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDatabase,
-  faRocket,
-  faSatelliteDish,
-  faServer,
-  faTabletAlt,
-} from "@fortawesome/free-solid-svg-icons";
 
 //=============ANIMATIONS===========================
 const bouncing = keyframes` 
@@ -34,7 +22,6 @@ const MainContainer = styled.div<ISectionProps>`
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 1s; */
-  background-color: #daf0f5;
   ${tw`
    w-full
     min-h-screen
@@ -43,18 +30,12 @@ const MainContainer = styled.div<ISectionProps>`
     flex-col
     items-center
     justify-center
-    pr-4
-    pl-4
-    pt-10
-    pb-10
-    md:pl-28
-    md:pr-28 
+    px-4
+    py-10
+    md:px-28
     md:pb-5
-    bg-gradient-to-b from-white to-blue-200
 `}
 
-  background: url(${planetOut});
-  background-size: cover;
   scroll-snap-align: center;
 `;
 
@@ -80,10 +61,10 @@ font-bold
 
 const FlowContainer = styled.div`
   display: flex;
-  flex-direction: column;
 
   ${tw`
-w-3/4
+  w-full
+md:w-3/4
 
 `}
 `;
@@ -106,29 +87,30 @@ const rocketFire = keyframes`
   }
 `;
 
-const TechMissile = styled.div<{ position: number; inViewPort: boolean }>`
+const TechMissile = styled.div<{ position: number; isScolledOnce: boolean }>`
   height: max-content;
   opacity: 0;
   transform: opacity 1s linear;
   will-change: opacity box-shadow transform;
   ${tw`
-border
 my-2
-w-3/4
-md:w-3/4
+ml-1
+md:ml-3
+w-full
 overflow-hidden
 flex
+flex-col
 justify-between
-md:h-20
 `}
-  border-radius: 20px 50px 50px 20px;
+  border-radius: 20px 20px 50px 20px;
 
-  animation: ${({ inViewPort }) => (inViewPort ? rocketFire : "")} 1s linear 1;
+  animation: ${({ isScolledOnce }) => (isScolledOnce ? rocketFire : "")} 1s
+    linear 1;
   animation-duration: ${({ position }) => 1 - position * 0.1 + `s`};
   animation-fill-mode: forwards;
-  @media (min-width: ${SCREENS.md}) {
-    margin-left: ${({ position }) => position * 15 + "%"};
-  }
+  /* @media (min-width: ${SCREENS.md}) {
+    margin-left: ${({ position }) => position * 2 + "%"};
+  } */
 `;
 
 const RocketHead = styled.div`
@@ -137,12 +119,22 @@ const RocketHead = styled.div`
   color: #f85ef88d;
   ${tw`
   flex
+  flex-col
   justify-center
   items-center
-  rounded-r-full
-  p-7
+  p-3
+  md:p-7
   text-xl
+  md:flex-row
 `};
+
+  span {
+    font-size: 8px;
+    ${tw`
+  ml-1
+    md:text-sm
+  `}
+  }
 
   @media (min-width: ${SCREENS.md}) {
     box-shadow: inset -5px 0px 4px 1px #ff00ff52;
@@ -154,27 +146,25 @@ const Spacer = styled.div`
 `;
 
 const BlocksContainer = styled.div`
-  background-color: #ffffffeb;
+  background-color: #a13e947d;
   ${tw`
   flex
   flex-col
   justify-center
   items-center
   w-full
-  md:flex-row
   `}
 `;
 
 const TechBlock = styled.div`
   border-bottom: 1px solid #00000049;
-
+  font-size: 8px;
   ${tw`
   h-full
    p-1
    flex
    flex-row-reverse
-   md:flex-col
-   justify-center
+   justify-end
 w-full
     items-center
   `}
@@ -186,18 +176,17 @@ w-full
 
   span {
     ${tw`
-   text-gray-600
+   text-gray-300
     mb-1
     ml-1  
-    text-xs
-    font-bold
+    md:text-sm
     `}
   }
 
   img {
     ${tw`
-    w-5
-    md:w-10
+   w-3
+    md:w-4
     `}
   }
 `;
@@ -206,6 +195,7 @@ w-full
 export default function TechSection() {
   const toggleDarkTheme = useThemeUpdate();
   const darkTheme = useTheme();
+  const [isScolledOnce, setIsScrolledOnce] = useState(false);
 
   // useEffect(() => {
   //   window.addEventListener("scroll", (e) => {
@@ -222,6 +212,7 @@ export default function TechSection() {
     if (darkTheme) {
       toggleDarkTheme();
     }
+    setIsScrolledOnce(true);
   };
   const onLeaveViewport = () => {};
 
@@ -244,7 +235,11 @@ export default function TechSection() {
 
       <FlowContainer>
         {technologies.map((t, index) => (
-          <TechMissile key={t.type} position={index} inViewPort={inViewport}>
+          <TechMissile
+            key={t.type}
+            position={index}
+            isScolledOnce={isScolledOnce}
+          >
             <BlocksContainer>
               {t.content.map(({ logo, name }) => (
                 <TechBlock key={name}>
@@ -257,6 +252,7 @@ export default function TechSection() {
             <Spacer />
             <RocketHead>
               <FontAwesomeIcon icon={t.logo}></FontAwesomeIcon>
+              <span>{t.type}</span>
             </RocketHead>
           </TechMissile>
         ))}

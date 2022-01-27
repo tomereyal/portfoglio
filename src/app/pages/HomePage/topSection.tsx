@@ -1,76 +1,46 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import MclarenCarImg from "../../../assets/images/mclaren-orange-big.png";
-import BlobImg from "../../../assests/images/blob.svg";
-import Coin from "../../../assests/images/coin.png";
-import { SCREENS } from "../../components/responsive";
+import Pixel1 from "../../../assests/images/pixel1.png";
+import Pixel2 from "../../../assests/images/pixel2.jpeg";
 import Button from "../../components/button";
 import Sidebar from "../../components/sidebar";
 import { useTheme, useThemeUpdate } from "../../ThemeContext";
-import { ResponsiveText } from "../../components/responsive-text";
 
-//@ts-ignore
-import video from "../../../assests/space.mp4";
 import SideText from "../../components/sideText";
 import { useInViewport } from "react-in-viewport";
 
-const TopSectionContainer = styled.div`
-  min-height: 400px;
-  margin-top: 6em;
-  z-index: 1;
-  ${tw`
-    w-full
-    max-w-screen-2xl
-    flex
-    justify-between
-    pl-3
-    pr-3
-    lg:pl-12
-    lg:pr-12
- 
-  `};
-  scroll-snap-align: center;
-`;
-
 const MainContainer = styled.div`
-  background-color: #0c0c0c;
+  /* background-color: #0c0c0c; */
   ${tw`
 flex
 justify-center
 items-center
-pt-0
-pb-0
-pr-7
-pl-7
+py-0
+px-7
 min-h-screen
 relative
 w-full
 `}
 `;
 
-const HeroBackground = styled.div`
+const TopSectionContainer = styled.div`
+  min-height: 400px;
+  /* margin-top: 6em; */
+  z-index: 1;
   ${tw`
-absolute
-top-0
-bottom-0
-right-0
-left-0
-w-full
-h-full
-overflow-hidden
-`}
-`;
-
-const VideoBg: any = styled.video`
-  -o-object-fit: cover;
-  object-fit: cover;
-  background: #232a34;
-
-  ${tw`
-w-full
-h-full
-`}
+    w-full
+    max-w-screen-2xl
+    flex
+    flex-col
+    justify-center
+    items-center
+    px-3
+    lg:px-12
+    md:flex-row
+    md:justify-between
+  `};
+  scroll-snap-align: center;
 `;
 
 const LeftContainer = styled.div`
@@ -86,8 +56,15 @@ const RightContainer = styled.div`
     w-1/2
     flex
     flex-col
+    justify-center
+    items-center
     relative
-    mt-20
+    p-2
+
+    mt-5
+    md:mt-20
+    md:p-12
+
   `};
 `;
 
@@ -109,11 +86,11 @@ const GlassBackground = styled.div`
 const Slogan = styled.h1`
   ${tw`
     font-bold
-    text-2xl
+    text-xl
     text-center
-    xl:text-6xl
-    sm:text-3xl
+    sm:text-2xl
     md:text-5xl
+    xl:text-6xl
     lg:font-black
     md:font-extrabold
     text-white
@@ -137,68 +114,10 @@ const Description = styled.p`
   `};
 `;
 
-const BlobContainer = styled.div`
-  width: 10em;
-  /* height: 3em; */
-  position: absolute;
-  right: -5em;
-  top: -9em;
-  z-index: 2;
-  transform: rotate(-30deg);
-  img {
-    width: 100%;
-    /* height: auto; */
-    max-height: max-content;
-  }
-  @media (min-width: ${SCREENS.sm}) {
-    width: 40em;
-    max-height: 10em;
-    right: -9em;
-    top: -16em;
-    transform: rotate(-25deg);
-  }
-  @media (min-width: ${SCREENS.lg}) {
-    width: 50em;
-    max-height: 30em;
-    right: -7em;
-    top: -15em;
-    transform: rotate(-30deg);
-  }
-  @media (min-width: ${SCREENS.xl}) {
-    width: 70em;
-    max-height: 30em;
-    right: -15em;
-    top: -25em;
-    transform: rotate(-20deg);
-  }
-`;
-
-const StandAloneImage = styled.div`
+const StandAloneImage = styled.img`
   width: auto;
-  height: 10em;
-  right: -6em;
-  top: -5em;
-  position: absolute;
-  img {
-    width: auto;
-    height: 100%;
-    max-width: fit-content;
-  }
-  @media (min-width: ${SCREENS.sm}) {
-    height: 16em;
-    right: -6em;
-    top: -6em;
-  }
-  @media (min-width: ${SCREENS.lg}) {
-    height: 21em;
-    right: -8em;
-    top: -5em;
-  }
-  @media (min-width: ${SCREENS.xl}) {
-    height: 30em;
-    right: -13em;
-    top: -9em;
-  }
+  height: 70%;
+  border-radius: 10px;
 `;
 
 const ButtonsContainer = styled.div`
@@ -210,21 +129,6 @@ justify-center
 items-center
 `}
 `;
-
-// const CoinSprite = styled.div`
-//   height: 200px;
-//   width: 120px;
-//   background: url(${Coin});
-//   animation: sprite 1.5s steps(9) infinite;
-//   @keyframes sprite {
-//     from {
-//       background-position: 20px;
-//     }
-//     to {
-//       background-position: 1100px;
-//     }
-//   }
-// `;
 
 export default function TopSection() {
   const toggleDarkTheme = useThemeUpdate();
@@ -262,14 +166,14 @@ export default function TopSection() {
           {/* <BlobContainer>
             <img src={BlobImg} />
           </BlobContainer> */}
-          <StandAloneImage>{/* <img src={MclarenCarImg} /> */}</StandAloneImage>
+          <StandAloneImage src={Pixel1}></StandAloneImage>
           {/* <ResponsiveText style={{ color: "white" }}>
           </ResponsiveText> */}
         </RightContainer>
       </TopSectionContainer>
-      <HeroBackground>
+      {/* <HeroBackground>
         <VideoBg autoPlay loop muted src={video} type="video/mp4" />
-      </HeroBackground>
+      </HeroBackground> */}
       <Sidebar />
     </MainContainer>
   );

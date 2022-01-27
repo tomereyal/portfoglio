@@ -32,6 +32,15 @@ const bounceAndResizeShadow = keyframes`
     transform: translateY(-5px);
     background-size: 40%;}
 `;
+const stacksMover = keyframes`
+  0%{
+    transform: translateX(-150%);
+  }
+  
+  100%{
+    transform: translateX(150%);
+  }
+`;
 //=====================================
 
 interface IMainContainer {
@@ -75,22 +84,6 @@ interface IShadowContainer {
   index?: number;
   inViewport?: boolean;
 }
-const ShadowContainer = styled.div<IShadowContainer>`
-  background-image: url("https://static.trendme.net/pictures/items/shadow-round_Lights-stardustnf-full-35014-648294.png");
-  background-repeat: no-repeat;
-  background-position: 50% 100%;
-  background-size: 55%;
-  animation: ${({ inViewport }) => (inViewport ? resizeShadow : "")}
-    ${({ index = 0 }) => 3 + index}s ease-in-out 800ms infinite;
-  ${tw`
-absolute
-top-0
-left-0
-bottom-0
-right-0
-  `};
-  transform: translateY(20px);
-`;
 
 interface IOvalProject {
   index?: number;
@@ -118,9 +111,10 @@ const OvalProject = styled.div<IOvalProject>`
   `};
   height: ${({ size = 20 }) => size}em;
   width: ${({ size = 20 }) => size}em;
-  box-shadow: 0 1.3px 6px -2px rgba(0, 0, 0, 0.4);
-  background-image: url(${blueSphere});
-  background-position: 60% 35%;
+  box-shadow: inset 0 0 4px 2px rgba(146, 144, 144, 0.801),
+    0 0 2px 2px rgba(53, 53, 53, 0.801);
+  /* background-image: url(${blueSphere});
+  background-position: 60% 35%; */
   border-radius: 50%;
   background-size: 125%;
   background-color: ${({ color }) => color};
@@ -154,7 +148,7 @@ const ProjectTitle = styled.h3`
   ${tw`
     text-base
     font-bold
-    text-black
+    text-white
     mt-6
     mb-1
     font-mono
@@ -166,12 +160,14 @@ export const Separator = styled.div`
   min-height: 1px;
   ${tw`
     flex
-    bg-gray-300
+    bg-gray-400
     mt-2
     mb-2
   `};
 `;
-export const StacksContainer = styled.div`
+
+export const StacksContainer = styled.div<{ index?: number }>`
+  animation: ${stacksMover} ${({ index = 0 }) => 9 + index}s linear infinite;
   ${tw`
     w-full
     flex
@@ -183,11 +179,21 @@ export const StacksContainer = styled.div`
 
 export const Stack = styled.p`
   ${tw`
+  text-gray-300
     text-xs
     font-bold
     ml-2
     mr-2
   `};
+`;
+
+const ProjectDescription = styled.div`
+  ${tw`
+text-gray-200
+px-7
+text-center
+
+`}
 `;
 
 export default function Project(props: IPropsProject) {
@@ -197,13 +203,18 @@ export default function Project(props: IPropsProject) {
     stacks,
     thumbnail,
     link,
+    slogan,
     path,
     inViewport,
     index = 0,
   } = props;
 
   const history = useHistory();
-  const colorArr = ["rgba(207, 183, 223, 0.5)", "rgba(110, 246, 239, 0.5)"];
+  const colorArr = [
+    "rgba(207, 183, 223, 0.5)",
+    "rgba(110, 246, 239, 0.5)",
+    "rgba(233, 145, 145, 0.5)",
+  ];
 
   const onButtonClick = (url: string) => {
     return () => {
@@ -229,16 +240,16 @@ export default function Project(props: IPropsProject) {
             <img src={thumbnail} alt="website" />
           </ProjectThumbnail>
           <ProjectTitle>{title}</ProjectTitle>
-          <StacksContainer>
+          <StacksContainer index={index}>
             {stacks && stacks.length
               ? stacks.map((stack) => <Stack>{stack}</Stack>)
               : ""}
           </StacksContainer>
           <Separator />
 
-          {/* <ProjectDescription>
-            {description ? description : "Not available"}
-          </ProjectDescription> */}
+          <ProjectDescription>
+            {slogan ? slogan : "Not available"}
+          </ProjectDescription>
         </OvalProject>
       </ProjectContainer>
     </MainContainer>

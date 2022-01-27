@@ -1,0 +1,19 @@
+/* .nextButton {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.288);
+  border-radius: 50%;
+
+}
+.prevButton {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.288);
+  border-radius: 50%;
+} */
+
+.slider {
+  padding: 0;
+  height: 300px;
+  @media only screen and (max-width: 600px) {
+    height: 200px;
+  }
+}

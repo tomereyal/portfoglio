@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import {
-  faInbox,
-  faMobileAlt,
-  faPhoneVolume,
-} from "@fortawesome/free-solid-svg-icons";
+import { faInbox, faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import tw from "twin.macro";
-import Button from "../../components/button";
+//@ts-ignore
+import tomersResume from "../../../assests/tomerResumeFinal.pdf";
 
-const COLOR_CONFIG = { animationColor: `#c769cf` };
+const COLOR_CONFIG = { animationColor: `#fa9eaa` };
 
 const InfoContainer = styled.div`
   ${tw`
@@ -86,10 +83,25 @@ const Icon = styled.span`
   border-color: #0080004c
 `;
 
+const ImageContainer = styled.img`
+  /* height: 15em; */
+  border: 2px solid #fffffff7;
+
+  ${tw`
+  inline-block
+h-5
+w-5
+md:h-9
+md:w-9
+rounded-full
+`}
+  min-width: 20px;
+`;
+
 export default function ContactSection() {
   const sendMail = () => {
     const mailto: string =
-      "mailto:mail@gmail.com?subject=Test subject&body=Body content";
+      "mailto:tomereyal93@gmail.com?subject=Test subject&body=Body content";
     window.location.href = mailto;
   };
 
@@ -97,6 +109,9 @@ export default function ContactSection() {
     const whatsappUrl =
       "https://wa.me/972506871440?text=I%20just%20checked%20out%20your%20portfolio%20.%20How%20are%20you%20?";
     window.open(whatsappUrl, "_blank");
+  };
+  const openPDF = () => {
+    window.open(tomersResume, "_blank");
   };
 
   const [open, setOpen] = useState(false);
@@ -125,6 +140,12 @@ export default function ContactSection() {
             <FontAwesomeIcon icon={faInbox} />
           </Icon>
           <InfoText>Tomereyal93@gmail.com</InfoText>
+        </InfoItem>
+        <InfoItem onClick={openPDF}>
+          <ImageContainer
+            src={"https://i.ibb.co/84D3T67/tomerPic.png"}
+          ></ImageContainer>
+          <InfoText>Resume</InfoText>
         </InfoItem>
       </InfoContainer>
 

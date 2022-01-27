@@ -90,10 +90,10 @@ export default function ProjectPage(props: IProjectPage) {
         <SectionTitle>Features</SectionTitle>
         {features?.map(({ title, bulletins, img }) => (
           <Card key={title}>
-            <FeatureTitle>{title}</FeatureTitle>
+            <FeatureTitle>&#11088; {title}</FeatureTitle>
             <ul>
               {bulletins.map((b, index) => (
-                <li key={index + "b"}>- {b}</li>
+                <li key={index + "b"}> &#9989;{b}</li>
               ))}
             </ul>
           </Card>
